@@ -6,6 +6,8 @@ import { handleForm } from "./action"
 import Input from "../components/Input"
 import Button from "../components/Button"
 import { useFormError } from "../hooks/useFormError"
+import "../lib/db"
+
 
 export default function LogIn() {
   const [email, setEmail] = useState("")
