@@ -1,52 +1,27 @@
-'use client'
+import Link from "next/link";
 
-import { useState, useEffect } from "react"
-import { useActionState } from "react"
-import { handleForm } from "./action"
-import Input from "../components/Input"
-import Button from "../components/Button"
-import { useFormError } from "../hooks/useFormError"
-import "../lib/db"
-
-
-export default function LogIn() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [username, setUsername] = useState("")
-  const [state, action] = useActionState(handleForm, null)
-
-  const fieldErrors = useFormError(state)
-
+export default function Home() {
   return (
-    <form action={action} className="flex flex-col gap-3">
-      <Input
-        name="email"
-        type="email"
-        placeholder="Email"
-        required
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        errors={fieldErrors.email ?? []}
-      />
-      <Input
-        name="username"
-        type="text"
-        placeholder="Username"
-        required
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        errors={fieldErrors.username ?? []}
-      />
-      <Input
-        name="password"
-        type="password"
-        placeholder="Password"
-        required
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        errors={fieldErrors.password ?? []}
-      />
-      <Button text="Log in" />
-    </form>
-  )
+    <div className="flex flex-col items-center justify-between min-h-screen p-6 max-w-[600px] mx-auto py-10">
+      <div className="my-auto flex flex-col items-center gap-2 *:font-medium">
+        <span className="text-9xl">🥕</span>
+        <h1 className="text-4xl ">당근</h1>
+        <h2 className="text-2xl">당근 마겟에 어서오세요!</h2>
+      </div>
+      <div className="flex flex-col items-center gap-3 w-full">
+        <Link
+          href="/create-account"
+          className="w-full bg-orange-500 text-white text-lg font-medium py-2.5 rounded-md text-center hover:bg-orange-400 transition-colors"
+        >
+          시작하기
+        </Link>
+        <div className="flex gap-2">
+          <span>이미 계정이 있나요?</span>
+          <Link href="/login" className="hover:underline">
+            로그인
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 }
